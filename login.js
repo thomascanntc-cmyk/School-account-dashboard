@@ -1,18 +1,43 @@
+// login.js
+
 // Handle login form submission
-document.getElementById("loginForm").addEventListener("submit", (e) => {
+document.getElementById("loginForm")?.addEventListener("submit", function(e) {
   e.preventDefault();
 
-  const email = document.getElementById("username").value.trim().toLowerCase();
-  const password = document.getElementById("password").value;
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value.trim();
 
-  // Get accounts from localStorage
-  let accounts = JSON.parse(localStorage.getItem("accounts")) || {};
+  if (username && password) {
+    // Save logged in user to localStorage
+    localStorage.setItem("loggedInUser", username);
 
-  if (accounts[email] && accounts[email].password === password) {
-    // Save logged-in user
-    localStorage.setItem("loggedInUser", email);
-    window.location.href = "index.html"; // redirect to dashboard
+    // Redirect to dashboard
+    window.location.href = "index.html"; 
   } else {
-    document.getElementById("errorMsg").textContent = "Incorrect Login Details";
+    alert("Please enter both username and password.");
   }
+});
+
+// Handle signup form submission (if you have a signup page)
+document.getElementById("signupForm")?.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const username = document.getElementById("signupUsername").value.trim();
+  const password = document.getElementById("signupPassword").value.trim();
+
+  if (username && password) {
+    // Save new user (basic demo — replace with real backend logic)
+    localStorage.setItem("loggedInUser", username);
+
+    // Redirect to dashboard
+    window.location.href = "index.html"; 
+  } else {
+    alert("Please fill in all fields.");
+  }
+});
+
+// Logout button logic (on dashboard page)
+document.getElementById("logoutBtn")?.addEventListener("click", function() {
+  localStorage.removeItem("loggedInUser");
+  window.location.href = "login.html";
 });

@@ -1,30 +1,18 @@
-document.getElementById("signupForm").addEventListener("submit", (e) => {
+// signup.js
+
+document.getElementById("signupForm")?.addEventListener("submit", function(e) {
   e.preventDefault();
 
-  const fullname = document.getElementById("fullname").value.trim();
-  const email = document.getElementById("email").value.trim().toLowerCase();
-  const phone = document.getElementById("phone").value.trim();
-  const password = document.getElementById("password").value;
+  const username = document.getElementById("signupUsername").value.trim();
+  const password = document.getElementById("signupPassword").value.trim();
 
-  // Retrieve existing accounts from localStorage or create empty object
-  let accounts = JSON.parse(localStorage.getItem("accounts")) || {};
+  if (username && password) {
+    // Save new user (demo only — replace with backend logic later)
+    localStorage.setItem("loggedInUser", username);
 
-  // Check if email already exists
-  if (accounts[email]) {
-    alert("An account with this email already exists. Please log in.");
-    window.location.href = "login.html";
-    return;
+    // Redirect to dashboard
+    window.location.href = "index.html";
+  } else {
+    alert("Please fill in all fields.");
   }
-
-  // Save new account
-  accounts[email] = {
-    fullname,
-    phone,
-    password
-  };
-
-  localStorage.setItem("accounts", JSON.stringify(accounts));
-
-  alert("Account created successfully! You can now log in.");
-  window.location.href = "login.html";
 });
