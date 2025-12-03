@@ -109,12 +109,6 @@ expenseForm.addEventListener("submit", (e) => {
   expenseForm.reset();
 });
 
-// Restrict access if not logged in
-const loggedInUser = localStorage.getItem("loggedInUser");
-if (!loggedInUser) {
-  window.location.href = "login.html";
-}
-
 // Handle logout
 document.getElementById("logoutBtn").addEventListener("click", () => {
   localStorage.removeItem("loggedInUser"); // clear session
