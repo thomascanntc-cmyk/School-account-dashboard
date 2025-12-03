@@ -7,20 +7,22 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="login.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   
+<script>
+  const loggedInUser = localStorage.getItem("loggedInUser");
+  if (!loggedInUser) {
+    // If no one is logged in, send them to login page
+    window.location.href = "login.html";
+  } else {
+    console.log("Welcome:", loggedInUser);
+    // Here you can show dashboard content
+  }
+</script>
+
    <script>
   window.location.href = "signup.html";
 </script>
 </head>
-
-<script>
-  // Check if user is logged in
-  const loggedInUser = localStorage.getItem("loggedInUser");
-  if (!loggedInUser) {
-    // Redirect back to login if not logged in
-    window.location.href = "login.html";
-  }
-
-</script>
 
 <body>
    <header>
